@@ -121,8 +121,8 @@ public final class Context<T> {
      * @param valueType the type of value allowed for this key
      */
     public static <T> Key<T> key(String name, Class<T> valueType) {
-        Objects.requireNonNull(name, "name must be supplied");
-        Objects.requireNonNull(valueType, "valueType must be supplied");
+        Objects.requireNonNull(name, "name");
+        Objects.requireNonNull(valueType, "valueType");
         return new Key<>(name, valueType);
     }
 
@@ -172,7 +172,7 @@ public final class Context<T> {
          * @param context the Context used to look up the value
          */
         public Optional<T> contextValue(Context<?> context) {
-            Objects.requireNonNull(context, "context must not be null");
+            Objects.requireNonNull(context, "context");
             do {
                 if (this.equals(context.key)) {
                     return Optional.of(valueType.cast(context.value));
