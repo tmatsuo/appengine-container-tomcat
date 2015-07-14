@@ -14,8 +14,9 @@
  * limitations under the License.
  *
  */
-package com.google.apphosting.trace;
+package com.google.apphosting.trace.spi;
 
+import com.google.apphosting.trace.spi.TraceContext;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;

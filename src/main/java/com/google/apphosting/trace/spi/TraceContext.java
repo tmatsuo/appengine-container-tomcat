@@ -14,10 +14,11 @@
  * limitations under the License.
  *
  */
-package com.google.apphosting.trace;
+package com.google.apphosting.trace.spi;
 
 import java.math.BigInteger;
 import java.util.BitSet;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -25,7 +26,7 @@ import java.util.Objects;
 /**
  *
  */
-public class TraceContext {
+public final class TraceContext {
     private static final int DECIMAL = 10;
     private static final int HEX = 16;
     private static final BitSet TCHARS;
@@ -38,6 +39,12 @@ public class TraceContext {
         for (int i = 0; i < specials.length(); i++) {
             TCHARS.set(specials.charAt(i));
         }
+    }
+
+    private static final TraceContext NULL_CONTEXT =
+            new TraceContext(BigInteger.ZERO, 0, false, false, Collections.emptyMap());
+    public static TraceContext nullContext() {
+        return NULL_CONTEXT;
     }
 
     private final BigInteger traceId;
